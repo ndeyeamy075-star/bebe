@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Toi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d0a1a 40%, #1a0a12 100%);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Particules de cœurs flottants */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff6b9d;
+            animation: floatHeart 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header / Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            background: radial-gradient(circle at center, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 10vw, 6.5rem);
+            color: #ffb6c1;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+            margin-bottom: 15px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 105, 180, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 105, 180, 0.9), 0 0 60px rgba(255, 182, 193, 0.4); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #ffc0cb;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            font-size: 1.1rem;
+            color: #ff9ebb;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            text-align: center;
+            color: #ffb6c1;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "💕";
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Galerie photos */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: #2a0a1a;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.3);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #fff;
+            font-size: 0.95rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        /* Poèmes */
+        .poems {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .poem-card {
+            background: rgba(255, 182, 193, 0.08);
+            border: 1px solid rgba(255, 182, 193, 0.25);
+            border-radius: 24px;
+            padding: 40px 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-card:hover {
+            background: rgba(255, 182, 193, 0.14);
+            transform: scale(1.01);
+        }
+
+        .poem-card::before {
+            content: "❝";
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 4rem;
+            color: rgba(255, 182, 193, 0.2);
+            font-family: Georgia, serif;
+        }
+
+        .poem-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #ffe4e9;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .poem-emoji {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        /* Audio */
+        .audio-section {
+            text-align: center;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 30px;
+            padding: 50px 30px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .audio-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #ffb6c1;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+
+        .audio-section p {
+            color: #ffc0cb;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 50px;
+            outline: none;
+        }
+
+        /* Message final */
+        .final-message {
+            text-align: center;
+            padding: 60px 20px 100px;
+        }
+
+        .final-message h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #ff9ebb;
+            margin-bottom: 20px;
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            color: #ffc0cb;
+            max-width: 550px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .heart-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .poem-text {
+                font-size: 1.1rem;
+            }
+            .photo-card img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cœurs qui tombent -->
+    <div id="hearts-container"></div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Pour Toi ❤️</h1>
+        <p>Chaque battement de mon cœur porte ton nom...<br>Voici un petit coin du web rien que pour nous.</p>
+        <div class="scroll-down" onclick="document.getElementById('photos').scrollIntoView({behavior:'smooth'})">
+            ↓ Découvre ↓
+        </div>
+    </div>
+
+    <!-- Photos -->
+    <section id="photos">
+        <h2 class="section-title">C'ELLE QUE MON COEUR à Choisi  bayil niane texte</h2>
+        <div class="gallery">
+            <!-- Remplace les src par tes vraies photos -->
+            <div class="photo-card">
+                <img src="D.jpeg" alt="Toi" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&q=80'">
+                <div class="photo-overlay">Mon étoile ✨</div>
+            </div>
+            <div class="photo-card">
+                <img src="G.jpeg" alt="Toi" onerror="this.src='https://images.unsplash.com/photo-1529333166432-2dcda2c76f26?w=600&q=80'">
+                <div class="photo-overlay">Mon bonheur 🌸</div>
+            </div>
+            <div class="photo-card">
+                <img src="B.jpeg" alt="Toi" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&q=80'">
+                <div class="photo-overlay">Ma raison de sourire 💖</div>
+            </div>
+            <div class="photo-card">
+                <img src="A.jpeg" alt="Toi" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80'">
+                <div class="photo-overlay">Toujours toi 🌹</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poèmes -->
+    <section>
+        <h2 class="section-title">Quelques mots de mon cœur</h2>
+        <div class="poems">
+
+            <div class="poem-card">
+                <p class="poem-text">
+                    Dans le silence de la nuit,<br>
+                    ton sourire illumine tout.<br>
+                    Même les étoiles<br>
+                    envient la lumière de tes yeux.
+                </p>
+                <div class="poem-emoji">🌙✨💫</div>
+            </div>
+
+            <div class="poem-card">
+                <p class="poem-text">
+                    Si j’avais mille vies à vivre,<br>
+                    je te choisirais encore<br>
+                    et encore… et encore.<br>
+                    Tu es mon éternité.
+                </p>
+                <div class="poem-emoji">♾️❤️</div>
+            </div>
+
+            <div class="poem-card">
+                <p class="poem-text">
+                    Tes rires sont ma mélodie préférée,<br>
+                    ton regard mon plus bel océan.<br>
+                    Avec toi, même les jours ordinaires<br>
+                    deviennent magiques.
+                </p>
+                <div class="poem-emoji">🎵🌊✨</div>
+            </div>
+
+            <div class="poem-card">
+                <p class="poem-text">
+                    Je n’ai pas besoin de grands discours.<br>
+                    Juste de te dire, simplement :<br>
+                    Je t’aime.<br>
+                    Aujourd’hui, demain, et pour toujours.
+                </p>
+                <div class="poem-emoji">💌💘</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Audio -->
+    <section>
+        <div class="audio-section">
+            <h2>Écoute ceci… 🎧</h2>
+            <p>JE NE POURRAIT JAMAIS OUBLIER CE CADEAU VENANT DE TOI MA VIE</p>
+            <!-- Remplace audio.mp3 par ton fichier -->
+            <audio controls>
+                <source src="H.ogg" type="audio/mpeg">
+                Ton navigateur ne supporte pas l’audio.
+            </audio>
+            <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.8;">
+                (Si le son ne se lance pas, clique sur play ❤️)
+            </p>
+        </div>
+    </section>
+
+    <!-- Message final -->
+    <div class="final-message">
+        <h2>Je t’aime 💕</h2>
+        <p>
+            Merci d’être toi.<br>
+            Merci d’illuminer ma vie chaque jour.<br>
+            Ce petit site n’est qu’un fragment de tout l’amour que j’ai pour toi.
+        </p>
+        <button class="heart-btn" onclick="createHeartsBurst()">❤️ Clique ici ❤️</button>
+    </div>
+
+    <script>
+        // Création de cœurs qui tombent en continu
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['❤️', '💕', '💗', '💓', '💖', '💘'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.getElementById('hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+        // Lancer des cœurs régulièrement
+        setInterval(createHeart, 600);
+
+        // Explosion de cœurs au clic du bouton
+        function createHeartsBurst() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '❤️';
+                    heart.style.left = (40 + Math.random() * 20) + 'vw';
+                    heart.style.top = '70vh';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Lancer quelques cœurs au chargement
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    </script>
+</body>
+</html>
